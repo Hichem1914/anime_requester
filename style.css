@@ -2,6 +2,12 @@ html{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h1{
     font-weight: 900;
 }
@@ -10,10 +16,11 @@ h1{
     display: flex;
     flex-direction: column;
     align-content: center;
+    align-items: justify;
     gap: 10px;
 }
 
-.input {
+.input-text {
     background-color: #f5f5f5;
     color: #242424;
     padding: .15rem .5rem;
@@ -23,6 +30,35 @@ h1{
     border: none;
     line-height: 1.15;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#search, #erase, #endpoint{
+    padding: 15px 20px;
+    border: none;
+    outline: none;
+    background-color: #f5f5f5;
+    color: #242424;
+    border-radius: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+}
+
+#search, #erase{
+    width: 125px;
+    background-color:rgb(0, 132, 255);
+    color: #f5f5f5;
+    margin-top: 20px;
+}
+
+#search:hover, #erase:hover {
+    transform: translateY(-3px);
   }
