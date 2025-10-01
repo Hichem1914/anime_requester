@@ -9,6 +9,21 @@
 <body>
     <div class="container">
         <h1>Anime Requester</h1>
+        <div class="search-area">
+            <input class="input-text" name="text" placeholder="Rechercher" type="search">
+            <div class="input">
+                <label for="endpoint">Choisissez un type de recherche :</label>
+                <select id="endpoint">
+                    <option value="by-title">Recherche par titre</option>
+                    <option value="by-id">Recherche par ID</option>
+                    <option value="by-ranking">Recherche par rang</option>
+                </select>
+            </div>
+            <div>
+                <button id="search">Rechercher</button>
+                <button id="erase">Effacer</button>
+            </div>
+        </div>
         <div id="dataReturn">
             
         </div>
