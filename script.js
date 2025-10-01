@@ -1,10 +1,12 @@
 const dataReturn = document.getElementById('dataReturn');
 
-fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
+fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
+    method: 'GET',
     headers: {
         'x-rapidapi-key': '5d68fd2638msh597e47dcf3f541dp1e02f6jsn745472b3b753',
         'x-rapidapi-host': 'anime-db.p.rapidapi.com'
-    } })
+    }
+})
 
     .then(function(response){
 
@@ -28,8 +30,9 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
 
 
     function affiche(donnee){
-       
-        donnee.forEach(function(user){
+       const animeArray = donnee.data || donnee.results || donnee;
+       if(Array.isArray(animeArray)){
+            animeArray.forEach(function(user){
             let div = document.createElement("div");
             div.innerHTML = 
             `   <p> ${user.title} </p><br>
@@ -38,6 +41,10 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
             `
             dataReturn.appendChild(div);
         });
+       }else{
+            console.error("Les données ne sont pas un tableau", donnee);
+       }
+       
        
     }
 
