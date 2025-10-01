@@ -16,7 +16,8 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
     })
 
     .then(function(data){
-        console.log(dataReturn);
+        
+        console.log(data);
         affiche(data);
     })
 
