@@ -1,3 +1,51 @@
+const dataReturn = document.getElementById('dataReturn');
+
+fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
+    headers: {
+        'x-rapidapi-key': '5d68fd2638msh597e47dcf3f541dp1e02f6jsn745472b3b753',
+        'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+    } })
+
+    .then(function(response){
+
+        if(!response){
+            throw new error('Réponse non trouvée');
+        }
+        console.log('Reponse recupere', response);
+        return response.json();
+    })
+
+    .then(function(data){
+        console.log(dataReturn);
+        affiche(data);
+    })
+
+    .catch (function(error){
+        console.error(error);
+    });
+
+
+
+    function affiche(donne){
+       
+        donne.forEach(element => {
+            let div = document.createElement("div");
+            div.innerHTML = 
+            `   <p> ${title} </p><br>
+                <p> ${genre} </p><br>
+                <img src="${image}"/>
+            `
+            dataReturn.appendChild(div);
+        });
+       
+    }
+
+
+
+
+
+
+/*
 async function request() {
     const url = 'https://anime-db.p.rapidapi.com/anime/by-ranking/1';
     const options = {
@@ -27,3 +75,4 @@ async function request() {
         console.error(error);
     }
 }
+    */
