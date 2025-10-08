@@ -1,5 +1,20 @@
 const dataReturn = document.getElementById('dataReturn');
+const btnSelect  = document.getElementById('endpoint');
+const resultSelect = document.getElementById('search');
+const resetBtn = document.getElementById('erase');
 
+btnSelect.addEventListener('click', function(){
+    const valeur = btnSelect.value;
+    console.log('Valeur selectiionnée:',valeur);
+    if(valeur ===''){
+       dataReturn.innerHTML =  '<span style="color: red;">❌ Aucune option sélectionnée</span>';
+    }else {
+                valeurSelect.innerHTML = `
+                    <strong>Valeur :</strong> "${valeur}"<br>
+                    <strong>Type :</strong> ${typeof valeur} (chaîne de caractères)
+                `;
+            }
+});
 fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
     method: 'GET',
     headers: {
