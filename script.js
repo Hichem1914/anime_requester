@@ -1,10 +1,12 @@
 const dataReturn = document.getElementById('dataReturn');
 
-fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
+fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
+    method: 'GET',
     headers: {
         'x-rapidapi-key': '5d68fd2638msh597e47dcf3f541dp1e02f6jsn745472b3b753',
         'x-rapidapi-host': 'anime-db.p.rapidapi.com'
-    } })
+    }
+})
 
     .then(function(response){
 
@@ -16,7 +18,8 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
     })
 
     .then(function(data){
-        console.log(dataReturn);
+        
+        console.log(data);
         affiche(data);
     })
 
@@ -26,6 +29,7 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
 
 
 
+<<<<<<< HEAD
     function affiche(donne){
 
         donne.forEach(function(donne) {
@@ -34,9 +38,24 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
             `   <p> ${donne.title} </p><br>
                 <p> ${donne.genre} </p><br>
                 <img src="${donne.image}"/>
+=======
+    function affiche(donnee){
+       const animeArray = donnee.data || donnee.results || donnee;
+       if(Array.isArray(animeArray)){
+            animeArray.forEach(function(user){
+            let div = document.createElement("div");
+            div.innerHTML = 
+            `   <p> ${user.title} </p><br>
+                <p> ${user.genre} </p><br>
+                <img src="${user.image}"/>
+>>>>>>> 1c598a58fb2450c58f5d61659df0f5ed3c4b9bdc
             `
             dataReturn.appendChild(div);
         });
+       }else{
+            console.error("Les données ne sont pas un tableau", donnee);
+       }
+       
        
     }
 
