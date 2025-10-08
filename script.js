@@ -28,17 +28,6 @@ fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
     });
 
 
-
-<<<<<<< HEAD
-    function affiche(donne){
-
-        donne.forEach(function(donne) {
-            let div = document.createElement("div");
-            div.innerHTML = 
-            `   <p> ${donne.title} </p><br>
-                <p> ${donne.genre} </p><br>
-                <img src="${donne.image}"/>
-=======
     function affiche(donnee){
        const animeArray = donnee.data || donnee.results || donnee;
        if(Array.isArray(animeArray)){
@@ -48,7 +37,7 @@ fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
             `   <p> ${user.title} </p><br>
                 <p> ${user.genre} </p><br>
                 <img src="${user.image}"/>
->>>>>>> 1c598a58fb2450c58f5d61659df0f5ed3c4b9bdc
+
             `
             dataReturn.appendChild(div);
         });
