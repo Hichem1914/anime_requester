@@ -1,27 +1,38 @@
 const dataReturn = document.getElementById('dataReturn');
 const btnSelect  = document.getElementById('endpoint');
-const resultSelect = document.getElementById('search');
+const btnSereach = document.getElementById('search');
 const resetBtn = document.getElementById('erase');
+const searchName = document.getElementById('searchInput');
 
-btnSelect.addEventListener('click', function(){
+btnSereach.addEventListener('click', rechercheAnime);
+
+
+
+function rechercheAnime(){
     const valeur = btnSelect.value;
+    const searchByname = searchName.value.trim();
     console.log('Valeur selectiionnée:',valeur);
     if(valeur ===''){
        dataReturn.innerHTML =  '<span style="color: red;">❌ Aucune option sélectionnée</span>';
     }else {
-                valeurSelect.innerHTML = `
+        dataReturn.innerHTML = `
                     <strong>Valeur :</strong> "${valeur}"<br>
                     <strong>Type :</strong> ${typeof valeur} (chaîne de caractères)
                 `;
             }
-});
-fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
-    method: 'GET',
-    headers: {
-        'x-rapidapi-key': '5d68fd2638msh597e47dcf3f541dp1e02f6jsn745472b3b753',
-        'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+    if(!searchByname){
+        affiche('Tu dois entrer un nom d\'anime', 'error');
+        return;
     }
-})
+
+        
+    fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '5d68fd2638msh597e47dcf3f541dp1e02f6jsn745472b3b753',
+            'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+        }
+    })
 
     .then(function(response){
 
@@ -35,12 +46,18 @@ fetch('https://anime-db.p.rapidapi.com/anime?page=1&size=10', {
     .then(function(data){
         
         console.log(data);
-        affiche(data);
+        btnSelect
+        if(!data.data || data.data.length === 0){
+            affiche('Aucun anime trouvé. Essaie un autre nom!','error');
+            return;
+        }
+        affiche(data.data);
     })
 
     .catch (function(error){
         console.error(error);
     });
+}
 
 
     function affiche(donnee){
