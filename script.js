@@ -27,13 +27,13 @@ fetch('https://anime-db.p.rapidapi.com/anime/by-ranking/1', {  method: 'GET',
 
 
     function affiche(donne){
-       
-        donne.forEach(element => {
+
+        donne.forEach(function(donne) {
             let div = document.createElement("div");
             div.innerHTML = 
-            `   <p> ${title} </p><br>
-                <p> ${genre} </p><br>
-                <img src="${image}"/>
+            `   <p> ${donne.title} </p><br>
+                <p> ${donne.genre} </p><br>
+                <img src="${donne.image}"/>
             `
             dataReturn.appendChild(div);
         });
