@@ -67,11 +67,7 @@ function rechercheAnime() {
     .then(function(data) {
         console.log('Données reçues:', data);
         btnSereach.disabled = false;
-        
-        if (!data.data || data.data.length === 0) {
-            dataReturn.innerHTML = '<span style="color: orange;">Aucun anime trouvé. Essaie un autre nom!</span>';
-            return;
-        }
+
         
         affiche(data); 
     })
@@ -83,39 +79,32 @@ function rechercheAnime() {
 }
 
 function affiche(donnee) {
-    dataReturn.innerHTML = ''; 
-    
-    const animeArray = donnee.data || donnee.results || donnee;
+    dataReturn.innerHTML = '';
 
-    function getType(donnee) {
-        return donnee.isArray ? donnee.data : [data];
-    }
+    const animeArray = Array.isArray(donnee.data) ? donnee.data : [donnee];
 
-        if (Array.isArray(animeArray)) {
-            animeArray.forEach(function(anime) { 
-                let div = document.createElement("div");
-                div.style.border = "1px solid #ccc";
-                div.style.padding = "10px";
-                div.style.margin = "10px 0";
-                div.style.borderRadius = "5px";
-                
-                div.innerHTML = `
-                    <h3>${anime.title || 'Titre non disponible'}</h3>
-                    <p><strong>Genres:</strong> ${anime.genres ? anime.genres.join(', ') : 'N/A'}</p>
-                    ${anime.image ? `<img src="${anime.image}" alt="${anime.title}" style="max-width: 200px; border-radius: 5px;"/>` : ''}
-                    <p><strong>Status:</strong> ${anime.status || 'N/A'}</p>
-                    <p><strong>Episodes:</strong> ${anime.episodes || 'N/A'}</p>
-                `;
-                
-                dataReturn.appendChild(div);
-            });
+    animeArray.forEach(function(anime) {
+        let div = document.createElement("div");
+        div.style.border = "1px solid #ccc";
+        div.style.padding = "10px";
+        div.style.margin = "10px 0";
+        div.style.borderRadius = "5px";
         
-        } else {
-            console.error("Les données ne sont pas un tableau", donnee);
-            dataReturn.innerHTML = '<span style="color: red;">Format de données incorrect</span>';
-        }
+        div.innerHTML = `
+            <h3>${anime.title || 'Titre non disponible'}</h3>
+            <p><strong>Genres:</strong> ${anime.genres ? anime.genres.join(', ') : 'N/A'}</p>
+            ${anime.image ? `<img src="${anime.image}" alt="${anime.title}" style="max-width: 200px; border-radius: 5px;"/>` : ''}
+            <p><strong>Status:</strong> ${anime.status || 'N/A'}</p>
+            <p><strong>Episodes:</strong> ${anime.episodes || 'N/A'}</p>
+            <p><strong>Rang:</strong> ${anime.ranking || 'N/A'}</p>
+            <p><strong>Synopsis:</strong> ${anime.synopsis || 'N/A'}</p>
 
 
+        `;
+        
+        dataReturn.appendChild(div);
+    });
+}
     /*else {
         donnee.forEach(function(donnee){
 
@@ -138,4 +127,3 @@ function affiche(donnee) {
     }
         */
     
-}
