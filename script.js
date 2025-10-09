@@ -89,15 +89,16 @@ function affiche(donnee) {
         div.style.padding = "10px";
         div.style.margin = "10px 0";
         div.style.borderRadius = "5px";
+        div.className = "h-full w-full bg-blue-0 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-100";
         
         div.innerHTML = `
-            <h3>${anime.title || 'Titre non disponible'}</h3>
-            <p><strong>Genres:</strong> ${anime.genres ? anime.genres.join(', ') : 'N/A'}</p>
+            <h3 class="">${anime.title || 'Titre non disponible'}</h3>
+            <p class="">Genres: ${anime.genres ? anime.genres.join(', ') : 'N/A'}</p>
             ${anime.image ? `<img src="${anime.image}" alt="${anime.title}" style="max-width: 200px; border-radius: 5px;"/>` : ''}
-            <p><strong>Status:</strong> ${anime.status || 'N/A'}</p>
-            <p><strong>Episodes:</strong> ${anime.episodes || 'N/A'}</p>
-            <p><strong>Rang:</strong> ${anime.ranking || 'N/A'}</p>
-            <p><strong>Synopsis:</strong> ${anime.synopsis || 'N/A'}</p>
+            <p class="">Status: ${anime.status || 'N/A'}</p>
+            <p class="">Episodes: ${anime.episodes || 'N/A'}</p>
+            <p class="">Rang: ${anime.ranking || 'N/A'}</p>
+            <p class="">Synopsis: ${anime.synopsis || 'N/A'}</p>
 
 
         `;
